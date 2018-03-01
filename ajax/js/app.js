@@ -2,20 +2,13 @@ $(document).ready(function () {
     $.getJSON({
         url: "/data/books.json",
         success: function (data) {
-            var bookArray = [];
+            var catalog = new Catalog();
             $.each(data.books, function (i, item) {
-                var book = new Book(item.id, item.title, item.author, item.isbn, item.coverUrl)
-                bookArray.push(book);
+                var book = new Book(item.id, item.title, item.author, item.isbn, item.coverUrl);
+                catalog.addBook(book);
             });
-            // console.log(bookArray);
-            $.each(bookArray, function (i, item) {
-                $("#tableBody").append("<tr>")
-                    .append("<td>" + item.bookId + "</td> " +
-                    "<td>" + "<img src=" + item.bookCover + " / >" + "</td>" +
-                    "<td>" + "<a href='./details.html?bookId=" + item.bookId + "'> " + item.title + "</a>" + "</td>" +
-                    "<td>" + item.author + "</td>" +
-                    "<td>" + item.isbn + "</td>");
-            });
+            catalog.build($("#tableBody"));
+            catalog.buildCaption($('#tableCaption'));
         },
         error: function (request, status, errorThrown) {
             console.log(request);

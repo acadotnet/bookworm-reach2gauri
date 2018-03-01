@@ -1,3 +1,26 @@
+class Catalog {
+    constructor() {
+        this._books = [];
+    }
+    get books() {
+        return this._books;
+    }
+    addBook(book) {
+        this._books.push(book);
+    }
+    build(target) {
+        var $tbody = $(target);
+
+        $.each(this._books, function (b, book) {
+            $tbody.append(book.toTableRow());
+        });
+    }
+    buildCaption(caption) {
+        var $caption = $(caption);
+        $caption.append("Found " + this._books.length + " books");
+    }
+}
+
 class Book {
     constructor(bookId, title, author, isbn, bookCover) {
         this._bookId = bookId;
@@ -6,34 +29,45 @@ class Book {
         this._isbn = isbn;
         this._bookCover = bookCover;
     }
+
     get bookId() {
         return this._bookId;
-    }
-    set bookId(IdValue) {
-        this._bookId = IdValue;
     }
     get bookCover() {
         return this._bookCover;
     }
-    set bookCover(bookCoverValue) {
-        this._bookCover = bookCoverValue;
-    }
     get title() {
         return this._title;
-    }
-    set title(titleValue) {
-        this._title = titleValue;
     }
     get author() {
         return this._author;
     }
-    set author(authorValue) {
-        this._author = authorValue;
-    }
     get isbn() {
         return this._isbn;
     }
-    set isbn(isbnValue) {
-        this._isbn = isbnValue;
+    toTableRow() {
+        var $tr = $('<tr>');
+        var $td = $('<td>');
+        $tr.append("<td>" + this._bookId + "</td> ");
+        $tr.append("<td>" + "<img src=" + this._bookCover + " / >" + "</td> ");
+        $tr.append("<td>" + "<a href='./details.html?bookId=" + this._bookId + "'> " + this._title + "</a>" + "</td> ");
+        $tr.append("<td>" + this._author + "</td> ");
+        $tr.append("<td>" + this._isbn + "</td> ");
+
+        return $tr;
+    }
+    buildAuthor(targetAuthor) {
+        if (this._author.length == 1) {
+            $(targetAuthor).append('<input readonly class="form-control-plaintext" id="author">');
+            $('#author').val(this._author);
+        } else {
+            $(targetAuthor).append('<ul>');
+            var $list = $(targetAuthor).find('ul');
+            //function to place each Author on individual list item 
+            $.each(this._author, function (i, authorName) {
+                $list.append('<li>' + authorName + '</li>');
+            });
+        }
+
     }
 }
