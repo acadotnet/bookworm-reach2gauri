@@ -22,12 +22,13 @@ class Catalog {
 }
 
 class Book {
-    constructor(bookId, title, author, isbn, bookCover) {
+    constructor(bookId, title, author, isbn, bookCover, genre) {
         this._bookId = bookId;
         this._title = title;
         this._author = author;
         this._isbn = isbn;
         this._bookCover = bookCover;
+        this._genre = genre;
     }
 
     get bookId() {
@@ -44,6 +45,9 @@ class Book {
     }
     get isbn() {
         return this._isbn;
+    }
+    get genre() {
+        return this._genre;
     }
     toTableRow() {
         var $tr = $('<tr>');
@@ -69,5 +73,24 @@ class Book {
             });
         }
 
+    }
+    detailPage(genreAll) {
+
+        var tempGenre = this._genre;
+
+        $("#breadCrumbTitle").append(this._title);
+        $("#bookId").val(this._bookId);
+        $("#bookTitle").val(this._title);
+        $("#bookISBN").val(this._isbn);
+        $("#bookCover").html('<img alt="" src="' + this._bookCover + '" />');
+        this.buildAuthor("#bookAuthor");
+
+        $.each(genreAll, function (i, itemGenre) {
+            if (itemGenre.id == tempGenre) {
+                $('#bookGenre').append("<option selected>" + itemGenre.genre + "</option>");
+            } else {
+                $('#bookGenre').append("<option>" + itemGenre.genre + "</option>");
+            }
+        });
     }
 }

@@ -4,7 +4,7 @@ $(document).ready(function () {
         success: function (data) {
             var catalog = new Catalog();
             $.each(data.books, function (i, item) {
-                var book = new Book(item.id, item.title, item.author, item.isbn, item.coverUrl);
+                var book = new Book(item.id, item.title, item.author, item.isbn, item.coverUrl, item.genre);
                 catalog.addBook(book);
             });
             catalog.build($("#tableBody"));

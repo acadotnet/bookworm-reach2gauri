@@ -7,7 +7,7 @@
                 "Adam Rubin",
                 "Daniel Salmieri"
             ],
-            "genre": "Children",
+            "genre": 1,
             "isbn": "0803739478",
             "coverUrl": "https://images.gr-assets.com/books/1362345778l/16685922.jpg"
         },
@@ -17,7 +17,7 @@
             "author": [
                 "Bill Deane"
             ],
-            "genre": "Non-fiction",
+            "genre": 2,
             "isbn": "144224433X",
             "coverUrl": "https://images.gr-assets.com/books/1417412736l/23466272.jpg"
         },
@@ -27,7 +27,7 @@
             "author": [
                 "Phil Knight"
             ],
-            "genre": "Non-fiction",
+            "genre": 2,
             "isbn": "1501135910",
             "coverUrl": "https://images.gr-assets.com/books/1457284880l/27220736.jpg"
         },
@@ -37,21 +37,48 @@
             "author": [
                 "Ken Jennings"
             ],
-            "genre": "Fiction",
+            "genre": 3,
             "isbn": "1439167176",
             "coverUrl": "https://images.gr-assets.com/books/1327938058l/10502301.jpg"
         }
     ],
-    "genreAll" : [
-        "Romance",
-        "Fiction",
-        "Non-fiction",
-        "Children",
-        "Horror",
-        "Thriller",
-        "Mistery",
-        "Science",
-        "Education"
+    "genreAll": [
+        {
+            "id": 1,
+            "genre": "Children"
+        },
+        {
+            "id": 2,
+            "genre": "Non-fiction"
+        },
+        {
+            "id": 3,
+            "genre": "Fiction"
+        },
+        {
+            "id": 4,
+            "genre": "Romance"
+        },
+        {
+            "id": 5,
+            "genre": "Horror"
+        },
+        {
+            "id": 6,
+            "genre": "Thriller"
+        },
+        {
+            "id": 7,
+            "genre": "Mistery"
+        },
+        {
+            "id": 8,
+            "genre": "Science"
+        },
+        {
+            "id": 9,
+            "genre": "Education"
+        }
     ],
     "__source": "https://www.goodreads.com"
 }
